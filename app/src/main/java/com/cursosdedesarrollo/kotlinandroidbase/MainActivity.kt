@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 
 //importación del layout para usarlo directamente
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
         */
+    }
+
+    fun onClick(v:View): Unit{
+        Log.d("app","Botón pulsado")
+        Snackbar.make(v, "Botón pulsado", Snackbar.LENGTH_LONG).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
