@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ArrayAdapter
 
 //importación del layout para usarlo directamente
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,6 +32,20 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("mensaje", message)
             startActivity(intent)
         }
+        //recipe_list_view es el objeto que representa al listado
+        //cargamos el listado desde un fichero de assets en JSon con una clase de ayuda
+        val recipeList = Recipe.getRecipesFromFile("recipes.json", this)
+        //Creamos un array vacio del tamaño del número de recetas
+        val listItems = arrayOfNulls<String>(recipeList.size)
+        //rellenamos el array utilizando las recetas
+        for (i in 0 until recipeList.size) {
+            val recipe = recipeList[i]
+            listItems[i] = recipe.title
+        }
+        //creamos el adaptador que rellena los elementos visuales del listview con una plantilla predefinida
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
+        //asignamos el adaptador al listview
+        recipe_list_view.adapter = adapter
         /*
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
