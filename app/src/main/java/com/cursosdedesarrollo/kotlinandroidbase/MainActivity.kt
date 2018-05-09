@@ -52,6 +52,16 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
         */
+        val context = this
+        recipe_list_view.setOnItemClickListener { _, _, position, _ ->
+            // 1
+            val selectedRecipe = recipeList[position]
+            // 2
+            val detailIntent = SecondActivity.newIntent(context, selectedRecipe)
+
+            // 3
+            startActivity(detailIntent)
+        }
     }
 
     fun onClick(v:View): Unit{
