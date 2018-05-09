@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             listItems[i] = recipe.title
         }
         //creamos el adaptador que rellena los elementos visuales del listview con una plantilla predefinida
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
+        val adapter = RecipeAdapter(this, recipeList)
         //asignamos el adaptador al listview
         recipe_list_view.adapter = adapter
         /*
