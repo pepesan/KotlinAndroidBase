@@ -23,6 +23,12 @@ class MainActivity : AppCompatActivity() {
         // debido al import de arriba
         textView.setText("Hola Mundo!!")
         Log.d("app",textView?.toString())
+        button.setOnClickListener{view ->
+            Snackbar.make(view, "Cambiado comportamiento", Snackbar.LENGTH_LONG)
+                    .setAction("Action", {view ->
+                        Log.d("app","Acción de Snackbar")
+                    }).show()
+        }
         /*
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
