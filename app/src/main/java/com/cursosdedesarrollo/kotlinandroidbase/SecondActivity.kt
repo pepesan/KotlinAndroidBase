@@ -1,49 +1,30 @@
 package com.cursosdedesarrollo.kotlinandroidbase
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 
-//importación del layout para usarlo directamente
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.activity_second.*
+import kotlinx.android.synthetic.main.content_second.*
 
-
-class MainActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_second)
         setSupportActionBar(toolbar)
-        //ya no es necesario el textview=this.findViewById(R.id.textView)
-        // debido al import de arriba
-        textView.setText("Hola Mundo!!")
-        Log.d("app",textView?.toString())
-        button.setOnClickListener{view ->
-            val intent = Intent(this, SecondActivity::class.java)
-            val message = "Saltando"
-
-            intent.putExtra("mensaje", message)
-            startActivity(intent)
-        }
+        var mensaje=intent.getStringExtra("mensaje")
+        textView2.setText(mensaje)
         /*
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
         */
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
-
-    fun onClick(v:View): Unit{
-        Log.d("app","Botón pulsado")
-        Snackbar.make(v, "Botón pulsado", Snackbar.LENGTH_LONG).show()
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -56,10 +37,12 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             (R.id.action_settings) -> {
-                Log.d("app","Realiza cualquier acción")
+                Log.d("app","Salir de activity")
+                finish()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 }
